@@ -1,0 +1,20 @@
+.router-link-active {
+  background-color: #360192;
+}
+
+.circle {
+  height: 40px;;
+}
+
+.nav-info{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.btn-clear {
+  text-align: center;
+  background-color: transparent;
+}

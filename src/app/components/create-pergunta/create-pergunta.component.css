@@ -1,0 +1,14 @@
+.pHeader {
+    padding: 5px;
+    background-color: lightcoral;
+}
+
+.top-bar {
+  background-color: white;
+  border-bottom: 1px solid rgb(164, 165, 167);
+  height: 52px;
+}
+
+.warn {
+  color: red;
+}

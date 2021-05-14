@@ -1,0 +1,10 @@
+<div class="container overflow">
+    <p>Id: {{data._id}}</p>
+    <p [innerHtml]="data.proposta | safe: 'html'"></p>
+    <div [innerHtml]="data.texto | safe: 'html'"></div>
+    <div [innerHtml]="data.enunciado | safe: 'html'"></div>
+    <div *ngFor="let alt of data.alternativas; let i = index">
+        <div [innerHTML]="convAlternativas(i) + ' ' + alt.alt + ' | ' + alt.resp | safe: 'html'"></div>
+    </div>
+    <button class="btn-small orange darken-3" mat-button (click)="ok()">Fechar</button>
+</div>

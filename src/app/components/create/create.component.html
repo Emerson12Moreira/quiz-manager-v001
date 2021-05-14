@@ -1,0 +1,34 @@
+<div class="container mt-5">
+  <div class="mt-5 flex">
+    <a class="btn " (click)="addTeste()" ><i class="material-icons">add</i></a>
+  </div>
+</div>
+<hr class="hr-fancy">
+<div class="container mt-5" *ngIf="ds.testes">
+  <h3>Meus testes</h3>
+  <div *ngFor="let t of ds.testes; let i = index" class="selectable">
+    <mat-card class="card no-border"  (click)="setTeste(i)" [ngClass]="{selected: (t.selected) }">
+      <div class="car-stuff no-border" >
+        <div class="no-border">
+          <div class="level">
+            <!-- Left side -->
+            <div class="level-left"></div>
+            <!-- Right side -->
+            <div class="level-right">
+              <a class="level-item no-border danger circle" (click)="deleteTeste(t.name)" ><i class="material-icons">close</i></a>
+            </div>
+          </div>
+        </div>
+        <p>ID: {{t.id}}</p>
+        <p>Nome: {{t.name}}</p>
+        <p>Criado em: {{parseDate(t.criado_em)}}</p>
+        <p>Descrição: {{t.descricao}}</p>
+      </div>
+    </mat-card>
+  </div>
+  <button *ngIf="!(ds.tIndex==undefined)" mat-button [routerLink]="['/edit']" routerLinkActive="router-link-active" >Editar Teste selecionado.</button>
+</div>
+<div *ngIf="dump" class="wrap">
+  <h3>Dump</h3>
+  <div>{{dump}}</div>
+</div>

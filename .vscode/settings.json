@@ -1,0 +1,21 @@
+{
+    "git.ignoreLimitWarning": true,
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#086d7c",
+        "activityBar.activeBorder": "#5a064f",
+        "activityBar.background": "#086d7c",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#5a064f",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "statusBar.background": "#05434c",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#086d7c",
+        "titleBar.activeBackground": "#05434c",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#05434c99",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#05434c",
+    "angular.enable-strict-mode-prompt": false
+}

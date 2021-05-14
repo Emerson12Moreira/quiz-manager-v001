@@ -1,0 +1,32 @@
+<div class="container border">
+  <h3>Perguntas salvas</h3>
+  <div *ngIf="toExport.length > 0">
+    <button mat-button (click)="exportPerguntas()">Exportar Perguntas</button>
+  </div>
+  <div class="py-4">
+    <a [routerLink]="['/create-pergunta']" routerLinkActive="router-link-active" >Nova Pergunta</a>
+  </div>
+  <div class="perguntas" *ngIf="ds.mPerguntas">
+    <div *ngFor="let p of ds.mPerguntas; let i =index">
+      <div class="border">
+        <div class="card" (click)="selectPergunta(i)">
+          <div class="card-header" [ngStyle]="{'background-color': p.materia.cor ? p.materia.cor : ''}">
+            <div class="card-header-title">{{p.materia.formal}}</div>
+          </div>
+          <div class="card-content">
+            <div [innerHTML]="p.enunciado"></div>
+          </div>
+          <div class="card-footer">
+            <h5>Id: {{p.id}}</h5>
+            <div>
+              <mat-checkbox (change)="selectedToExport($event.checked, i, p.id)" *ngIf="!(ds.tIndex == undefined)">Exportar</mat-checkbox>
+            </div>
+            <button mat-button (click)="edit(i)"><i class="material-icons">edit</i></button>
+            <button mat-button (click)="view()"><i class="material-icons">visibility</i></button>
+            <button mat-button (click)="deletePergunta(p.id)"><i class="material-icons">delete_forever</i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

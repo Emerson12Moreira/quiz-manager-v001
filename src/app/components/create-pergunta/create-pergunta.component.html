@@ -1,0 +1,99 @@
+<div class="">
+  <mat-toolbar color="primary" class="navbar top-bar">
+    <mat-toolbar-row>
+        <div class="container">
+          <button mat-button color="primary" (click)="verificarPergunta()">Verificar Pergunta</button>
+          <button mat-button color="primary" (click)="salvarPergunta()"> Salvar</button>
+        </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+<div class="navbar-spacer-2"></div>
+
+<div class="container">
+  <div class="pergunta">
+    <div class="columns">
+      <div class="column is-half">
+        <div class="materia">
+          <mat-form-field>
+            <mat-select placeholder="Matéria">
+              <mat-option *ngFor="let m of materias" [value]="m.materia" (click)="setMateria(m.materia)">
+                {{m.formal}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="column">
+        <mat-form-field *ngIf="nPergunta.materia.materia">
+          <mat-label>Peso</mat-label>
+          <input matInput type="number" [ngModel]="nPergunta.peso">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div *ngIf="nPergunta.materia.materia">
+      <p>id: {{ nPergunta.id }}</p>
+      <div class="title" [ngStyle]="{
+              'background-color': nPergunta.materia.materia
+                ? nPergunta.materia.cor
+                : ''
+            }">
+        {{ nPergunta.materia.formal }}
+      </div>
+
+      <div class="proposta">
+        <h3>Proposta</h3>
+        <div class="columns">
+          <div class="column is-full">
+            <ckeditor [(ngModel)]="nPergunta.proposta"></ckeditor>
+          </div>
+        </div>
+      </div>
+
+      <div class="texto">
+        <h3>Texto(opcional)</h3>
+        <div class="columns">
+          <div class="column is-full">
+            <ckeditor [(ngModel)]="nPergunta.texto"></ckeditor>
+          </div>
+        </div>
+      </div>
+
+      <div class="enunciado">
+        <h3>Enunciado</h3>
+        <div class="columns">
+          <div class="column is-full">
+            <ckeditor [(ngModel)]="nPergunta.enunciado"></ckeditor>
+          </div>
+        </div>
+      </div>
+
+      <div class="alternativas">
+        <div class="columns">
+          <div class="column is-four-fifths full-width">Alternativa</div>
+          <div class="column">Resposta?</div>
+          <div class="column">Apagar</div>
+        </div>
+        <div class="columns" *ngFor="let a of nPergunta.alternativas; let i = index">
+          <div class="column is-four-fifths">
+            <mat-form-field class="full-width">
+              <input matInput type="text" [(ngModel)]="a.alt" />
+            </mat-form-field>
+          </div>
+          <div class="column">
+            <mat-checkbox [(ngModel)]="a.resp" (change)="setCorrectAnswer(i)"></mat-checkbox>
+          </div>
+          <div class="column">
+            <i class="small c-pointer right material-icons" (click)="removeAlternativa(i)">close</i>
+        </div>
+      </div>
+      <div class="level-right">
+        <a class="" (click)="addAlternativa()">
+          <i class="material-icons">add</i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

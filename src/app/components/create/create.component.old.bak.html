@@ -1,0 +1,90 @@
+<div class="controllers">
+  <div>
+    <button class="waves-effect waves-light btn" (click)="logTeste()">
+      Verificar teste
+    </button>
+  </div>
+  <div>
+    <button class="waves-effect waves-light btn" (click)="createDataTest()">
+      Salvar teste
+    </button>
+  </div>
+</div>
+
+<div class="container">
+  <div>
+    <p>ID para o novo teste</p>
+    <input type="text" [(ngModel)]="teste.id" />
+    <div class="" *ngFor="let p of teste.perguntas; let i = index">
+      <div class="pergunta">
+        <h5
+          class="title"
+          [ngStyle]="{
+            'background-color': p.materia.materia ? p.materia.cor : ''
+          }"
+        >
+          {{ p.materia.formal }}
+        </h5>
+        <h6>Pergunta - {{ i + 1 }} | ID: {{ p.id }}</h6>
+        <input
+          type="text"
+          [(ngModel)]="p.materia.materia"
+          (blur)="setMateria(p.materia.materia, i)"
+          placeholder="Matéria"
+        />
+        <div>
+          <div (click)="removePerg(teste.perguntas, i)">
+            <i class="small c-pointer lime right material-icons">close</i>
+          </div>
+          <p>Peso</p>
+          <div class="row">
+            <div class="col s3">
+              <input type="number" [(ngModel)]="p.peso" />
+            </div>
+          </div>
+        </div>
+        <div>
+          <p>Proposta:</p>
+          <!-- <textarea cols="30" rows="10" [(ngModel)]="p.proposta"></textarea> -->
+          <ckeditor [(ngModel)]="p.proposta"></ckeditor>
+        </div>
+        <div>
+          <p>Texto (opcional):</p>
+          <textarea cols="30" rows="10" [(ngModel)]="p.texto"></textarea>
+        </div>
+        <div>
+          <p>Enunciado:</p>
+          <textarea [(ngModel)]="p.enunciado" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+          <p>Alternativas:</p>
+          <div class="row" *ngFor="let a of p.alternativas; let j = index">
+            <div class="col s9">
+              <input type="text" [(ngModel)]="a.alt" />
+            </div>
+            <div class="col s2">
+              <input type="text" [(ngModel)]="a.resp" />
+            </div>
+            <div class="col s1">
+              <div (click)="removeAlternativa(i, j)">
+                <i class="small c-pointer indigo right material-icons">close</i>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s1">
+              <a class="btn-floating btn-small left" (click)="addAlternativa(i)"
+                ><i class="material-icons">add</i></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a
+      class="btn-floating btn-small red c-btn right"
+      (click)="addPerg('materia')"
+      ><i class="material-icons">add</i></a
+    >
+  </div>
+</div>

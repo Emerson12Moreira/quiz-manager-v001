@@ -1,0 +1,28 @@
+<mat-toolbar color="primary" class="navbar">
+  <mat-toolbar-row>
+    <span class="menu-spacer"></span>
+    <div>
+      <button *ngIf="!user" mat-button [routerLink]="['/loginout']" routerLinkActive="router-link-active" >Login</button>
+      <button *ngIf="user" mat-button [routerLink]="['/create']" routerLinkActive="router-link-active" >Meus Testes</button>
+      <button *ngIf="user" mat-button [routerLink]="['/minhas-perguntas']" routerLinkActive="router-link-active" >Minhas Perguntas</button>
+      <!-- <button *ngIf="!(ds.tIndex == undefined)" mat-button [routerLink]="['/edit']" routerLinkActive="router-link-active" >Editar Teste</button>
+      <button *ngIf="!(ds.tIndex == undefined)" mat-button [routerLink]="['/view']" routerLinkActive="router-link-active" >Ver</button> -->
+    </div>
+    <div class="nav-info" *ngIf="user">
+      <div class="">
+          <button mat-button class="btn" [matMenuTriggerFor]="menu">{{user.displayName}}</button>
+      </div>
+      <div class="s-between-5"></div>
+      <div class="mt-5">
+        <img class="circle" [src]="user.photoURL" alt="">
+    </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-menu #menu="matMenu">
+  <button class="btn-clear" mat-menu-item (click)="logOut()">Sair</button>
+</mat-menu>
+<div class="navbar-spacer-2"></div>
+<router-outlet></router-outlet>
+
+

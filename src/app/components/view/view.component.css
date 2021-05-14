@@ -1,0 +1,42 @@
+.enunciado {
+  background-color: chocolate;
+  font-size: 2em;
+  color: antiquewhite;
+  font-weight: 700;
+  text-align: justify;
+}
+
+.descricao {
+  margin-top: .3em;
+  margin-bottom: .3em;
+  text-align: justify;
+  font-size: 1.3em;
+}
+
+img {
+  margin-bottom: 120px;
+}
+
+.title {
+  padding: .3em;
+  text-align: center;
+}
+
+.pergunta {
+  border: 1px dashed lightslategray;
+  margin-top: 5em;
+  margin-bottom: .6em;
+  padding: .8em;
+}
+
+.top-bar {
+  background-color: white;
+  border-bottom: 1px solid rgb(164, 165, 167);
+  height: 52px;
+  color: black;
+}
+
+.btn-1 {
+  background-color: #7b9fd4;
+  margin-right: .3rem;
+}

@@ -1,0 +1,24 @@
+.perguntas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(33%, 1fr));
+  gap: 0.5rem;
+}
+
+.card-content {
+  word-wrap: break-word;
+  height: 130px;
+  overflow-y: scroll;
+}
+
+.card-header-title {
+  color: rgb(99, 101, 102);
+  text-shadow: black;
+}
+
+.card-footer {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 4px;
+  align-items: center;
+  justify-items: center;
+}

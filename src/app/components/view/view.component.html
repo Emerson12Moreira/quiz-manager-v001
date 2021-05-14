@@ -1,0 +1,33 @@
+<mat-toolbar class="navbar top-bar">
+  <mat-toolbar-row>
+      <div class="container" *ngIf="!(ds.tIndex == undefined)">
+        <button class="btn-1" *ngIf="!(ds.tIndex == undefined)" mat-button [routerLink]="['/edit']" routerLinkActive="router-link-active" >Voltar</button>
+      </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="container" *ngIf="!(ds.tIndex == undefined); else noTesteSelected">
+  <div class="row">
+    <p>ID: {{ ds.testes[ds.tIndex].id }}</p>
+      <div class="pergunta wrap-text" *ngFor="let p of ds.testes[ds.tIndex].perguntas; let i = index">
+        <h5 class="title" [ngStyle]="{ 'background-color': p.materia.materia ? p.materia.cor : '' }">
+          {{ p.materia.formal }}
+        </h5>
+        <div>
+          <p>{{p.touched}}</p>
+        </div>
+        <h4>Pergunta {{i + 1}}</h4>
+        <div [innerHTML] = "p.proposta | safe: 'html'"></div>
+        <div [innerHTML] = "p.texto | safe: 'html'"></div>
+        <div [innerHTML] = "p.enunciado | safe: 'html'"></div>
+        <div *ngFor="let a of p.alternativas; let i = index">
+          <div [innerHTML]="convAlternativas(i) + ' ' + a.alt + ' | ' + a.selected| safe: 'html'"></div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<ng-template #noTesteSelected>
+  <div class="container center-text">
+    <h2>Nenhum Teste selecionado.</h2>
+  </div>
+</ng-template>

@@ -1,0 +1,97 @@
+<h2 mat-dialog-title>Editar Pergunta</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="example-form">
+
+    <div class="container">
+      <div class="pergunta">
+        <div class="columns">
+          <div class="column is-half">
+            <div class="materia">
+              <mat-form-field>
+                <mat-select placeholder="Matéria" >
+                  <mat-option *ngFor="let m of materias" [value]="m.materia" (click)="setMateria(m.materia)">
+                    {{m.formal}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="column">
+            <mat-form-field *ngIf="ePergunta.materia.materia">
+              <mat-label>Peso</mat-label>
+              <input matInput type="number" [ngModel]="ePergunta.peso">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div *ngIf="ePergunta.materia.materia">
+          <p>id: {{ ePergunta.id }}</p>
+          <div class="title" [ngStyle]="{
+                  'background-color': ePergunta.materia.materia
+                    ? ePergunta.materia.cor
+                    : ''
+                }">
+            {{ ePergunta.materia.formal }}
+          </div>
+
+          <div class="proposta">
+            <h3>Proposta</h3>
+            <div class="columns">
+              <div class="column is-full">
+                <ckeditor [(ngModel)]="ePergunta.proposta"></ckeditor>
+              </div>
+            </div>
+          </div>
+
+          <div class="texto">
+            <h3>Texto(opcional)</h3>
+            <div class="columns">
+              <div class="column is-full">
+                <ckeditor [(ngModel)]="ePergunta.texto"></ckeditor>
+              </div>
+            </div>
+          </div>
+
+          <div class="enunciado">
+            <h3>Enunciado</h3>
+            <div class="columns">
+              <div class="column is-full">
+                <ckeditor [(ngModel)]="ePergunta.enunciado"></ckeditor>
+              </div>
+            </div>
+          </div>
+
+          <div class="alternativas">
+            <div class="columns">
+              <div class="column is-four-fifths full-width">Alternativa</div>
+              <div class="column">Resposta?</div>
+              <div class="column">Apagar</div>
+            </div>
+            <div class="columns" *ngFor="let a of ePergunta.alternativas; let i = index">
+              <div class="column is-four-fifths">
+                <mat-form-field class="full-width">
+                  <input matInput type="text" [(ngModel)]="a.alt" />
+                </mat-form-field>
+              </div>
+              <div class="column">
+                <mat-checkbox [(ngModel)]="a.resp" (change)="setCorrectAnswer(i)"></mat-checkbox>
+              </div>
+              <div class="column">
+                <i class="small c-pointer right material-icons" (click)="removeAlternativa(i)">close</i>
+            </div>
+          </div>
+          <div class="level-right">
+            <a class="" (click)="addAlternativa()">
+              <i class="material-icons">add</i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="btn-small orange darken-3" mat-button (click)="cancel()">Cancelar</button>
+  <button class="btn-small" mat-button (click)="save()"  cdkFocusInitial>Salvar</button>
+</mat-dialog-actions>

@@ -1,0 +1,129 @@
+  <mat-toolbar class="navbar top-bar">
+    <mat-toolbar-row>
+        <div class="container" *ngIf="!(ds.tIndex == undefined)">
+            <!-- <button class="btn-1" mat-button (click)="logTeste()">Verificar teste</button> -->
+            <button class="btn-1" mat-button (click)="prevPerg()"><mat-icon aria-hidden="false" aria-label="">navigate_before</mat-icon></button>
+            <button class="btn-1" mat-button (click)="nextPerg()"><mat-icon aria-hidden="false" aria-label="">navigate_next</mat-icon></button>
+            <button class="btn-1" *ngIf="!(ds.tIndex == undefined)" mat-button [routerLink]="['/view']" routerLinkActive="router-link-active" >Pré-visualização</button>
+            <button class="btn-1" mat-button (click)="updateTest()">Salvar</button>
+        </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+<div class="container" *ngIf="!(ds.tIndex == undefined); else noTesteSelected">
+    <div class="pergunta" *ngIf="(ds.testes[ds.tIndex].perguntas.length > 0); else add">
+      <p
+        class="title"
+        [ngStyle]="{'background-color': ds.testes[ds.tIndex].perguntas[ds.cIndex].materia.materia ? ds.testes[ds.tIndex].perguntas[ds.cIndex].materia.cor : ''}"
+      >
+        {{ ds.testes[ds.tIndex].perguntas[ds.cIndex].materia.formal }}
+    </p>
+      <div class="">
+        <h6>Pergunta - {{ this.ds.cIndex + 1 }} | ID: {{ ds.testes[ds.tIndex].perguntas[ds.cIndex].id }}</h6>
+      </div>
+
+      <div class="columns">
+        <div class="column is-one-third">
+          <div class="materia">
+            <mat-form-field>
+                <mat-select [(ngModel)]="ds.testes[ds.tIndex].perguntas[ds.cIndex].materia.materia" placeholder="Matéria" (selectionChange)="setMateria(ds.testes[ds.tIndex].perguntas[ds.cIndex].materia.materia, ds.cIndex)">
+                  <mat-option *ngFor="let m of materias" [value]="m.materia">
+                    {{m.formal}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="column">
+          <div class="peso">
+            <p>Peso</p>
+            <div class="">
+              <div class="">
+                <mat-form-field>
+                  <input matInput type="number" [(ngModel)] = "ds.testes[ds.tIndex].perguntas[ds.cIndex].peso">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="btn-remove">
+            <div class="level" (click)="removePerg(ds.testes[ds.tIndex].perguntas, ds.cIndex, ds.cIndex)">
+              <div class="level-left"></div>
+              <div class="level-right">
+                <i class="circle c-pointer material-icons danger circle">close</i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div>
+        <p>Proposta:</p>
+        <ckeditor [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic' ] }" [(ngModel)]="ds.testes[ds.tIndex].perguntas[ds.cIndex].proposta"></ckeditor>
+      </div>
+      <div>
+        <p>Texto (opcional):</p>
+        <ckeditor [(ngModel)]="ds.testes[ds.tIndex].perguntas[ds.cIndex].texto"></ckeditor>
+      </div>
+      <div>
+        <p>Enunciado:</p>
+        <ckeditor [(ngModel)]="ds.testes[ds.tIndex].perguntas[ds.cIndex].enunciado"></ckeditor>
+      </div>
+      <div>
+        <p>Alternativas:</p>
+          <div class="columns" *ngFor="let a of ds.testes[ds.tIndex].perguntas[ds.cIndex].alternativas; let j = index">
+
+            <div class="column is-four-fifths">
+                <mat-form-field class="full-width">
+                  <input matInput type="text" [(ngModel)]="a.alt" />
+                </mat-form-field>
+              </div>
+              <div class="column">
+                <mat-checkbox  (change)="setCorrectAnswer(j)" [(ngModel)]="a.resp"></mat-checkbox>
+              </div>
+              <div class="column">
+                <div (click)="removeAlternativa(ds.cIndex, j)">
+                <i class="small c-pointer right material-icons">close</i>
+              </div>
+              </div>
+          </div>
+
+          <div class="level">
+            <div class="level-left"></div>
+            <div class="level-right">
+              <a class="btn-floating btn-small left" (click)="addAlternativa(ds.cIndex)">
+                <i class="material-icons">add</i>
+              </a>
+            </div>
+          </div>
+      </div>
+    </div>
+
+  <div class="">
+    <div class=""></div>
+    <div class="level">
+      <div class="level-left"></div>
+      <div class="level-right">
+        <a class="red c-btn level-item" (click)="addPerg(1, ds.testes[ds.tIndex].perguntas)" ><i class="material-icons">add</i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noTesteSelected>
+  <div class="container center-text">
+    <h2>Nenhum Teste selecionado.</h2>
+  </div>
+</ng-template>
+
+<ng-template #add>
+  <div>
+    <h5>
+      Adicione perguntas ao seu teste.
+    </h5>
+  </div>
+</ng-template>
+
+

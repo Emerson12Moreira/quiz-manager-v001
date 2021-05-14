@@ -1,0 +1,7 @@
+<h2 [class]="msgs[data.error].class" mat-dialog-title>{{msgs[data.error].header}}</h2>
+<mat-dialog-content class="mat-typography">
+  <p>{{msgs[data.error].message}}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="btn-small" mat-button [mat-dialog-close]=true cdkFocusInitial>OK</button>
+</mat-dialog-actions>

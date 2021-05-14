@@ -1,0 +1,27 @@
+.error {
+  background-color: crimson;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  text-align: center;
+}
+
+.warn {
+  background-color: chocolate;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  text-align: center;
+}
+
+.info {
+  background-color: rgb(95, 131, 231);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  text-align: center;
+}
+
+.mat-dialog-container {
+  border: 1px solid dimgrey;
+}
