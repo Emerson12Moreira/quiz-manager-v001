@@ -29,6 +29,9 @@ export class CreateComponent implements OnInit {
     descricao: '',
     observacao: '',
     totalPerg: 0,
+    estimatedTime: 1800,
+    totalQuiz: 1,
+    userScore: null,
     userInfo: {
       nota: null,
       aluno: '',

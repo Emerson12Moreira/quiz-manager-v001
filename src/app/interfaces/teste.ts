@@ -11,6 +11,9 @@ export interface Teste {
   orientacoes: string;
   observacao: string;
   totalPerg: number;
+  estimatedTime: number,
+  totalQuiz: number;
+  userScore: number
   userInfo: {
     aluno: string;
     finalizada_em: number;
