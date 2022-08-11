@@ -4,6 +4,9 @@
   </div>
 </div>
 <hr class="hr-fancy">
+<div class="container">
+  <a [routerLink]="['/teste/9']" routerLinkActive="router-link-active" >TESTE <--</a>
+</div>
 <div class="container mt-5" *ngIf="ds.testes">
   <h3>Meus testes</h3>
   <div *ngFor="let t of ds.testes; let i = index" class="selectable">

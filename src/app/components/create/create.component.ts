@@ -9,6 +9,7 @@ import { DataService } from 'src/app/services/data.service';
 import * as uuid from 'uuid';
 import {Teste} from '../../interfaces/teste';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -46,12 +47,14 @@ export class CreateComponent implements OnInit {
   constructor(
     public ds: DataService,
     private ls: AuthService,
-    public addDialog: MatDialog
+    public addDialog: MatDialog,
+    private router: Router
   ) {
     this.ls.user$.subscribe((u) => {
       this.user = u;
       if (!this.ds.testes) {
         this.getTestes();
+        this.router.navigate(['/teste/56241-A'])
       }
     });
   }

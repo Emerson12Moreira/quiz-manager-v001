@@ -8,6 +8,7 @@ import { CreateComponent } from './components/create/create.component';
 import { ViewComponent } from './components/view/view.component';
 import { EditComponent } from './components/edit/edit.component';
 import { ViewPerguntaComponent } from './components/view-pergunta/view-pergunta.component';
+import { TesteComponent } from './components/teste/teste.component';
 
 const routes: Routes = [
   {path: 'loginout', component: LoginoutComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'view', component: ViewComponent, canActivate: [AuthGuard]},
   {path: 'view-pergunta', component: ViewPerguntaComponent, canActivate: [AuthGuard]},
   {path: 'edit', component: EditComponent, canActivate: [AuthGuard]},
+  {path: 'teste/:id', component: TesteComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: 'create'}
 ];
 

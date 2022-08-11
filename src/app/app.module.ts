@@ -25,6 +25,7 @@ import { MinhasPerguntasComponent } from './components/minhas-perguntas/minhas-p
 import { EditPerguntaDialogComponent } from './dialogs/edit-pergunta-dialog/edit-pergunta-dialog.component';
 import { ViewPerguntaComponent } from './components/view-pergunta/view-pergunta.component';
 import { JsonprettyPipe } from './jsonpretty.pipe';
+import { TesteComponent } from './components/teste/teste.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { JsonprettyPipe } from './jsonpretty.pipe';
     MinhasPerguntasComponent,
     EditPerguntaDialogComponent,
     ViewPerguntaComponent,
-    JsonprettyPipe
+    JsonprettyPipe,
+    TesteComponent
   ],
   imports: [
     BrowserModule,
